@@ -1,9 +1,20 @@
+import React, { useContext } from "react";
+import { ExchangeContext } from "../context/ExchangeContext";
+
 const Header = () => {
-    return (
-        <div className="w-full bg-pink-500 text-center my-10">
-            <h3>ttitle</h3>
-        </div>
-    )
-}
+  const { fromCurrency, toCurrency, codeFrom, codeTo, amount } =
+    useContext(ExchangeContext);
+
+  return (
+    <div className="w-full flex justify-center items-center my-10">
+      <div className="w-2/4 text-center">
+        <h3 className="font-semibold text-3xl text-white">
+          {amount} {codeFrom} to {codeTo} - Convert {fromCurrency} to{" "}
+          {toCurrency}
+        </h3>
+      </div>
+    </div>
+  );
+};
 
 export default Header;
