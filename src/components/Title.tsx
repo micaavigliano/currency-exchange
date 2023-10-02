@@ -6,8 +6,8 @@ const Header = () => {
     useContext(ExchangeContext);
 
   return (
-    <div className="w-full flex justify-center items-center my-10">
-      <div className="w-2/4 text-center">
+    <div className="w-full flex justify-center items-center my-16">
+      <div className="w-3/4 text-center">
         <h3 className="font-semibold text-3xl text-white">
           {amount} {codeFrom} to {codeTo} - Convert {fromCurrency} to{" "}
           {toCurrency}

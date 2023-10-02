@@ -46,6 +46,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.14.11",
+    "dayjs": "^1.11.10",
     "tailwindcss": "^3.3.3"
   }
 }

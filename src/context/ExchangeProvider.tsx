@@ -5,7 +5,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
-import { ExchangeContext } from "./ExchangeContext";
+import { ExchangeContext, CurrencyRates } from "./ExchangeContext";
 
 interface ApiProviderProps {
   children: ReactNode;
@@ -17,20 +17,20 @@ type CurrencyData = {
 
 export const ExchangeProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const [currenciesList, setCurrenciesList] = useState<CurrencyData>({});
-  const [codeTo, setCodeTo] = useState<any>();
-  const [codeFrom, setCodeFrom] = useState<any>(1);
+  const [codeTo, setCodeTo] = useState<string>("");
+  const [codeFrom, setCodeFrom] = useState<string>("");
   const [currency, setCurrency] = useState<string[]>([]);
-  const [fromCurrency, setFromCurrency] = useState("Euro");
+  const [fromCurrency, setFromCurrency] = useState<string>("Euro");
   const [amount, setAmount] = useState(1);
   const [amountTo, setAmountTo] = useState(0);
-  const [toCurrency, setToCurrency] = useState("US Dollar");
+  const [toCurrency, setToCurrency] = useState<string>("US Dollar");
   const [response, setResponse] = useState<any>();
 
   const getCurrencies = async () => {
     try {
       const res = await fetch("https://api.vatcomply.com/currencies");
       const data = await res.json();
-      const names = Object.keys(data).map((item: any) => {
+      const names = Object.keys(data).map((item: string) => {
         return data[item].name;
       });
       setCurrenciesList(data);

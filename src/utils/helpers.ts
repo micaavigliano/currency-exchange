@@ -1,6 +1,6 @@
-export const formatCurrency = (value: any) => {
+export const formatCurrency = (value: number) => {
   return value.toLocaleString(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: 4,
+    maximumFractionDigits: 4,
   });
 };

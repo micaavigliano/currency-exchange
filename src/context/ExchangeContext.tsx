@@ -1,17 +1,24 @@
 import { createContext, Dispatch, SetStateAction } from "react";
+export interface CurrencyRates {
+  [currency: string]: number;
+}
 
 export type ExchangeContextProps = {
-  fromCurrency: any;
-  toCurrency: any;
-  currency: any;
-  response: any;
+  fromCurrency: string;
+  toCurrency: string;
+  currency: string[];
+  response: {
+    date: string;
+    base: string;
+    rates: CurrencyRates;
+  };
   amount: number;
   codeTo: string;
-  codeFrom: number;
-  amountTo: any;
-  setAmount: Dispatch<SetStateAction<any>>;
-  setToCurrency: Dispatch<SetStateAction<any>>;
-  setFromCurrency: Dispatch<SetStateAction<any>>;
+  codeFrom: string;
+  amountTo: number;
+  setAmount: Dispatch<SetStateAction<number>>;
+  setToCurrency: Dispatch<SetStateAction<string>>;
+  setFromCurrency: Dispatch<SetStateAction<string>>;
   handleSwitch: () => void;
 };
 

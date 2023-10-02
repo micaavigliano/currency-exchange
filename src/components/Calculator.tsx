@@ -20,47 +20,55 @@ const Calculator = () => {
     e.preventDefault();
   };
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const amount = event.target.value;
-    setAmount(amount);
+    if (!isNaN(Number(amount)) && parseFloat(amount) >= 0) {
+      setAmount(Number(amount));
+    }
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center w-10/12 m-auto bg-white rounded-md shadow-lg h-fit">
       <form
         onSubmit={handleSubmit}
-        className="flex w-10/12 text-center bg-pink-400"
+        className="flex text-center phone:flex-col screens:flex-row justify-between items-center w-full"
       >
-        <div className="flex flex-col p-6 text-left">
+        <div className="flex flex-col screens:p-6 p-4 text-left w-full">
           <label className="text-base font-semibold mb-3">Amount</label>
-          <div className="flex">
+          <div className="flex bg-white p-2 rounded-lg border-2 border-gray-200">
             <div>$</div>
             <input type="number" value={amount} onChange={handleInputChange} />
           </div>
         </div>
-        <div>
+        <div className="screens:p-6 p-4 w-full">
           <Autocomplete
             defaultText={fromCurrency}
             suggestions={currency}
-            onSelect={(value: any) => setFromCurrency(value)}
+            onSelect={(value: string) => setFromCurrency(value)}
             label={"From"}
           />
         </div>
         <div>
-          <button onClick={handleSwitch}>
+          <button
+            className="py-1 screens:py-auto"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleSwitch();
+            }}
+          >
             <CurrencyExchange />
           </button>
         </div>
-        <div>
+        <div className="screens:p-6 p-4 w-full">
           <Autocomplete
             defaultText={toCurrency}
             suggestions={currency}
-            onSelect={(value: any) => setToCurrency(value)}
+            onSelect={(value: string) => setToCurrency(value)}
             label={"To"}
           />
         </div>
       </form>
-      <div className="flex flex-cols w-10/12 text-center bg-pink-400">
+      <div className="flex flex-cols text-center bg-white mb-2 screens:mb-8 w-full">
         <RatesInfo />
       </div>
     </div>
